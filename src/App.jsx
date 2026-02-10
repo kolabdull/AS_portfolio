@@ -205,7 +205,7 @@ const Navbar = ({ activeSection }) => {
 
 // Hero Section
 const HeroSection = () => {
-  const greetings = ['Hi', 'Hola', 'Bonjour', 'Hallo', 'Nnọọ'];
+  const greetings = ['Hi', 'Hola', 'Bonjour', 'Hallo', 'Nnọọ', 'こんにちは', '안녕하세요', '你好', 'Olá', 'Привет', 'E káàárọ̀', 'Salve', 'Merhaba', 'Sawubona'];
   const [greetingIndex, setGreetingIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -319,7 +319,7 @@ const EducationSection = () => {
   const education = [
     {
       degree: "Master's in Financial Engineering (in view)",
-      school: "World Qunat University",
+      school: "World Quant University",
       year: "2025 - 2027",
       description: "Specialized in Deep Learning for Finance"
     },
