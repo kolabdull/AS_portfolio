@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* Ink transition sprite animation */
+@keyframes ink-transition {
+  0% { transform: translateX(-1.25%); }
+  99% { transform: translateX(-98.75%); opacity: 1; }
+  100% { transform: translateX(-98.75%); opacity: 0; }
+}
+
+.c-transition {
+  position: relative;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.c-transition::before {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/204808/ink-photo-frame.png');
+  background-size: 100% 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.c-transition::after {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/204808/ink-transition-sprite.png');
+  background-size: 100% 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4000%;
+  height: 100%;
+  transform: translateX(-1.25%);
+}
+.c-transition.is-active::after {
+  animation: ink-transition 2s steps(39) 0.5s forwards;
+}
+.c-transition__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.c-transition.is-active .c-transition__img {
+  opacity: 1;
+}
+
+/* Text fade-up animation */
+p {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Liquid trigger element */
+.c-author {
+  filter: url('#liquify');
+  opacity: 0;
+  transform: translateY(50px);
+}
