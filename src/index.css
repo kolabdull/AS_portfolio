@@ -55,6 +55,12 @@
   opacity: 1;
 }
 
+.visible-paragraph {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
 /* Text fade-up animation */
 p {
   opacity: 0;

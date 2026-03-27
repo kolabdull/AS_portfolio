@@ -1,26 +1,33 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const navigate = useNavigate();
+
+  const thumbnail = project.images?.[0] || project.image;
 
   const handleCardClick = () => {
-    if (project.link) {
-      window.open(project.link, '_blank', 'noopener,noreferrer');
-    }
+    const handleCardClick = () => {
+  console.log('Card clicked, navigating to:', `/project/${project.id}`);
+  navigate(`/project/${project.id}`);
+};
+    navigate(`/project/${project.id}`);
+    
   };
 
   return (
     <div
-      className={`group relative bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-gray-400 transition-all duration-500 hover:-translate-y-1 ${project.link ? 'cursor-pointer' : ''}`}
+      className="group relative bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-gray-400 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleCardClick}
     >
       {/* Project Image */}
       <div className="relative h-56 overflow-hidden bg-gray-100">
-        {project.image && !imageError ? (
+        {thumbnail && !imageError ? (
           <>
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center">
@@ -28,7 +35,7 @@ const ProjectCard = ({ project, index }) => {
               </div>
             )}
             <img
-              src={project.image}
+              src={thumbnail}
               alt={project.name}
               className={`w-full h-full object-cover transition-transform duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'} ${isHovered ? 'scale-105' : 'scale-100'}`}
               onLoad={() => setImageLoaded(true)}
@@ -41,16 +48,8 @@ const ProjectCard = ({ project, index }) => {
           </div>
         )}
         
-        {/* Hover Overlay */}
-        <div className={`absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex gap-4">
-            {project.link && (
-              <span className="px-5 py-2 bg-white text-black text-sm font-medium rounded-sm hover:bg-gray-100 transition-colors">
-                View Project →
-              </span>
-            )}
-          </div>
-        </div>
+        {/* Subtle dark overlay on hover */}
+        <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
       </div>
       
       {/* Project Info */}
