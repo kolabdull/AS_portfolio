@@ -89,7 +89,7 @@ import { useNavigate } from 'react-router-dom';
       description:
         "A clean and modern fintech website template designed for startups and financial platforms. It features a responsive layout, intuitive navigation, and essential pages for showcasing financial products and services.",
       tech: ["React", "Tailwind CSS", "HTML"],
-      link: "https://fintech1-gs55zvzz1-samuels-projects-95abe876.vercel.app/",
+      link: "https://fintech1-kappa.vercel.app",
       features: ["Landing Page", "About Page", "Custom Error Page"],
       images: [fintech1image2, fintech1image1],
     },
