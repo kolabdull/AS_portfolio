@@ -73,7 +73,7 @@ import { useNavigate } from 'react-router-dom';
         "React",
         "Tailwind CSS",
       ],
-      link: "https://github.com/Samm-OB/Forecast",
+      link: "https://fintech1-gs55zvzz1-samuels-projects-95abe876.vercel.app/",
       features: [
         "Multi-model Forecasting",
         "Probabilistic Predictions",
