@@ -13,7 +13,7 @@ const TechStack = () => {
       items: ["Node.js", "FastAPI", "Express"]
     },
     {
-      title: "Data Science",
+      title: "Data Science & ML",
       items: ["TensorFlow", "PyTorch", "Pandas", "Scikit-learn", "NumPy"]
     },
     {
@@ -22,7 +22,11 @@ const TechStack = () => {
     },
     {
       title: "Databases",
-      items: ["PostgreSQL", "Supabase", "Redis", "Firebase"]
+      items: ["PostgreSQL", "Supabase", "Redis", "Firebase", "MySQL"]
+    },
+    {
+      title: "AI & Automation",
+      items: ["n8n", "Claude", "LangChain", "OpenAI"]
     }
   ];
 

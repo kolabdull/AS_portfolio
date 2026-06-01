@@ -611,7 +611,7 @@ const Portfolio = () => {
               </div>
               <div className="mt-8">
                 <a
-                  href="/SAMUEL_OFOEGBU_cv__2_.pdf"
+                  href="Samuel_Ofoegbu_Resume (3) (1).pdf"
                   download
                   className="inline-block px-6 py-3 border border-gray-300 text-gray-700 text-sm font-medium hover:border-gray-400 transition-colors"
                 >
