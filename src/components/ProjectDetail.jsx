@@ -31,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
       description:
         "NaijaList is a Nigeria-focused classifieds and marketplace platform that connects buyers and sellers nationwide. Users can post and discover listings including jobs, services, trade-by-barter deals, and product sales.\n\nThe platform integrates KYC verification and geo-location mapping to improve trust, allowing users to interact with verified individuals within specific regions. It creates a secure, transparent, and flexible peer-to-peer marketplace for everyday transactions.",
       tech: ["React", "JavaScript", "Tailwind CSS", "PostgreSQL", "Docker"],
-      link: "https://naija-list.vercel.app/",
+      link: "https://townsquare.com.ng/",
       features: ["KYC Verification", "Geo-location Mapping", "Live Listings"],
       images: [naijalistImage, naijalistImage],
     },
