@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Magnetic  from "../components/Magnetic";
 
 const gateways = [
   {
@@ -52,12 +53,14 @@ function Home() {
 
       <div className="home-gateways">
         {gateways.map((g) => (
-          <Link to={g.to} className="home-gateway" key={g.num}>
-            <span className="home-gateway-num">{g.num}</span>
-            <span className="home-gateway-label">{g.label}</span>
-            <span className="home-gateway-line">{g.line}</span>
-            <span className="home-gateway-arrow">{"↗\uFE0E"}</span>
-          </Link>
+          <Magnetic key={g.num} strength={18}>
+            <Link to={g.to} className="home-gateway" key={g.num}>
+              <span className="home-gateway-num">{g.num}</span>
+              <span className="home-gateway-label">{g.label}</span>
+              <span className="home-gateway-line">{g.line}</span>
+              <span className="home-gateway-arrow">{"↗\uFE0E"}</span>
+            </Link>
+          </Magnetic>
         ))}
       </div>
     </section>

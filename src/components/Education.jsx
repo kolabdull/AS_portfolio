@@ -91,6 +91,16 @@ function Education() {
                   <p>
                     {item.description}
                   </p>
+                  {item.url && (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="recognition-link"
+                  >
+                    Read {"↗\uFE0E"}
+                  </a>
+                )}
                 </div>
               </article>
             )

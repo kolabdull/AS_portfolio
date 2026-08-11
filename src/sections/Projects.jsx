@@ -17,7 +17,7 @@ function Projects() {
         {projects.map((project, index) => (
           <Link
             to={`/project/${project.id}`}
-            className="project-item"
+            className="project-item reveal"
             key={project.id}
           >
             <div className="project-number">

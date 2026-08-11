@@ -47,10 +47,10 @@ export const projects = [
     status: "Under peer review",
 
     links: {
-      github: "https://github.com/kolabdull/computational-simulation",
-      paper: null,
-      report: null,
-      demo: null,
+      github: "https://github.com/kolabdull/computational-simulation ↗\uFE0E",
+      paper: "Paper ↗\uFE0E",
+      report: "Report ↗\uFE0E",
+      demo: "https://youtu.be/UDRohLBTu54?si=dxpgWPgXy2rOlvtF ↗\uFE0E",
     },
   },
 

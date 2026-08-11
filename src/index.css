@@ -6,6 +6,8 @@
   background: #0b0b0b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --accent: #4f9dff;
+  --accent-dim: rgba(79, 157, 255, 0.15);
 }
 
 * {
@@ -1995,4 +1997,120 @@ button {
 
 .navbar-links a {
   white-space: nowrap;
+}
+/* Accent color applications */
+.now-playing-dot {
+  background: var(--accent);
+}
+
+.navbar-links a.is-active {
+  color: var(--accent);
+}
+
+.navbar-links a.is-active .nav-num {
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.status-dot {
+  background: var(--accent);
+}
+
+.home-gateway:hover .home-gateway-arrow {
+  color: var(--accent);
+}
+
+.project-view-label {
+  color: var(--accent);
+}
+
+.contact-channel:hover .contact-channel-arrow {
+  color: var(--accent);
+}
+
+.cmdk-item.is-selected {
+  background: var(--accent-dim);
+  color: #f2f1ec;
+}
+
+.cmdk-item.is-selected .cmdk-item-hint {
+  color: var(--accent);
+}
+
+.life-goal-fill {
+  background: var(--accent);
+}
+
+.tech-stack-navigation button.active {
+  color: var(--accent);
+}
+/* Cursor glow */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+}
+
+@media (max-width: 900px) {
+  .cursor-glow {
+    display: none; /* no cursor on touch devices */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
+.magnetic {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic {
+    transition: none;
+  }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+.recognition-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: opacity 180ms ease;
+}
+.recognition-link:hover {
+  opacity: 0.75;
 }
