@@ -56,7 +56,7 @@ function Home() {
             <span className="home-gateway-num">{g.num}</span>
             <span className="home-gateway-label">{g.label}</span>
             <span className="home-gateway-line">{g.line}</span>
-            <span className="home-gateway-arrow">↗</span>
+            <span className="home-gateway-arrow">{"↗\uFE0E"}</span>
           </Link>
         ))}
       </div>
