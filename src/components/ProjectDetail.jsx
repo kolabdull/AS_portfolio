@@ -1,197 +1,196 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom'; // Import Link and useParams
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import adcomatImage from '../assets/adcomat.png';
-import naijalistImage from '../assets/naijalist.png';
-import anniekukuImage from '../assets/anniekuku.png';
-import punpoetsImage from '../assets/punpoets.png';
-import FinforecastImage from '../assets/FinforecastImage.png';
-import fintech1image1 from '../assets/fintech1image1.png';
-import fintech1image2 from '../assets/fintech1image2.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
+import { projects } from "../data/projects";
 
+// Section order per category. Each entry names a field on the project.
+// Sections only render if the project actually has that data, so a
+// missing field never breaks the page.
+const LAYOUTS = {
+  Research: ["overview", "problem", "approach", "results", "contribution"],
+  "Education Technology": ["problem", "approach", "results", "contribution"],
+  "AI & Automation": ["overview", "approach", "results"],
+  "Engineering Simulation": ["overview", "approach", "results"],
+  Software: ["overview", "approach", "results", "contribution"],
+};
 
-// Projects data (updated with id, images array)
-  const projects = [
-    {
-      id: 1,
-      name: "ADCOMAT",
-      type: "Website",
-      description: "ADCOMAT is a digital marketing automation platform built to help businesses streamline, manage, and optimize their advertising campaigns. It offers a centralized dashboard for campaign execution, performance tracking, and analytics, enabling data-driven decisions and scalable growth.",
-      tech: ["React", "TypeScript", "Tailwind CSS"],
-      link: "https://adcomat.vercel.app/",
-      features: [""],
-      images: [adcomatImage, adcomatImage], // Using same image twice; replace with actual second image
-    },
-    {
-      id: 2,
-      name: "NaijaList",
-      type: "Website",
-      description:
-        "NaijaList is a Nigeria-focused classifieds and marketplace platform that connects buyers and sellers nationwide. Users can post and discover listings including jobs, services, trade-by-barter deals, and product sales.\n\nThe platform integrates KYC verification and geo-location mapping to improve trust, allowing users to interact with verified individuals within specific regions. It creates a secure, transparent, and flexible peer-to-peer marketplace for everyday transactions.",
-      tech: ["React", "JavaScript", "Tailwind CSS", "PostgreSQL", "Docker"],
-      link: "https://townsquare.com.ng/",
-      features: ["KYC Verification", "Geo-location Mapping", "Live Listings"],
-      images: [naijalistImage, naijalistImage],
-    },
-    {
-      id: 3,
-      name: "Anniekuku",
-      type: "Website",
-      description: "Anniekuku is a modern e-commerce platform for discovering and purchasing handcrafted fine jewelry. It delivers a visually rich shopping experience with curated collections, advanced filtering, and optimized media handling for seamless browsing.",
-      tech: ["React", "JavaScript", "Tailwind CSS", "PostgreSQL", "Cloudinary"],
-      link: "https://anniekuku-frontend.vercel.app/",
-      features: ["Product Catalog", "Category Filtering", "Image Optimization"],
-      images: [anniekukuImage, anniekukuImage],
-    },
-    {
-      id: 4,
-      name: "Punpoets",
-      type: "Website",
-      description: "Punpoets is a creative platform that connects poets, writers, and clients through content sharing and booking. Poets can showcase portfolios, publish blog posts, and receive bookings, while users can discover and hire talent for events and projects.",
-      tech: ["React", "Firebase", "Express", "Socket.io"],
-      link: "https://punpoets.vercel.app/",
-      features: ["Poet Profiles", "Booking System", "Real-time Interaction"],
-      images: [punpoetsImage, punpoetsImage],
-    },
-    {
-      id: 5,
-      name: "Multi-Model Financial Forecasting",
-      type: "Data Science",
-      description:
-        "An end-to-end financial forecasting system integrating GARCH(1,1), ARIMA-GARCH, and a custom LSTM-GNN hybrid with Graph Attention and Transformer encoders.\n\nThe system fetches live and historical stock data (Yahoo Finance), orchestrates model training using Celery, and stores probabilistic forecasts (mean, volatility, standard deviation) in PostgreSQL.\n\nThe hybrid deep learning model, built with TensorFlow and TensorFlow Probability, outputs full predictive distributions using negative log-likelihood loss and mixed-precision training. It achieved a 98% reduction in training loss, demonstrating strong capability in capturing multi-stock dependencies.\n\nA FastAPI backend serves predictions and metrics, while a React + Tailwind frontend provides interactive visualizations for model comparison. Fully containerized using Docker with Redis and Celery for distributed processing.",
-      tech: [
-        "Python",
-        "TensorFlow",
-        "TensorFlow Probability",
-        "Scikit-learn",
-        "FastAPI",
-        "Celery",
-        "Redis",
-        "PostgreSQL",
-        "React",
-        "Tailwind CSS",
-      ],
-      link: "https://github.com/Samm-OB/Forecast",
-      features: [
-        "Multi-model Forecasting",
-        "Probabilistic Predictions",
-        "Real-time Data Pipeline",
-        "Interactive Visualization Dashboard",
-      ],
-      images: [FinforecastImage, FinforecastImage],
-    },
-    {
-      id: 6,
-      name: "Fintech Template 1",
-      type: "Template",
-      description:
-        "A clean and modern fintech website template designed for startups and financial platforms. It features a responsive layout, intuitive navigation, and essential pages for showcasing financial products and services.",
-      tech: ["React", "Tailwind CSS", "HTML"],
-      link: "https://fintech1-kappa.vercel.app",
-      features: ["Landing Page", "About Page", "Custom Error Page"],
-      images: [fintech1image2, fintech1image1],
-    },
-  ];
+const DEFAULT_LAYOUT = [
+  "overview",
+  "problem",
+  "approach",
+  "results",
+  "contribution",
+];
 
-// ------------------------------------------------------------------
-// Project Detail Component
-// ------------------------------------------------------------------
-// const ProjectDetail = () => {
-//   const { id } = useParams();
-//   // Find the project from the global projects array.
-//   // In a real app, you might fetch from a store or API.
-//   const project = projects.find(p => p.id === parseInt(id));
+// How each field is labelled and rendered, per category where it differs.
+const SECTION_META = {
+  overview: { label: "OVERVIEW" },
+  problem: { label: "THE PROBLEM" },
+  approach: { label: "APPROACH" },
+  results: { label: "RESULTS" },
+  contribution: { label: "MY CONTRIBUTION" },
+};
 
-const ProjectDetail = () => {
+// Category-specific relabelling (same field, different framing).
+const LABEL_OVERRIDES = {
+  Software: { approach: "ARCHITECTURE & FEATURES" },
+  "Education Technology": { results: "USERS & IMPACT" },
+  "Engineering Simulation": { approach: "METHODOLOGY" },
+  "AI & Automation": { approach: "HOW IT WORKS" },
+};
+
+// Which link types to surface per category (keeps professional work safe).
+const LINK_POLICY = {
+  Research: ["paper", "report"],
+  "Education Technology": ["github", "demo"],
+  "AI & Automation": ["demo"],
+  "Engineering Simulation": ["report"],
+  Software: ["github", "demo"],
+};
+
+const LINK_LABELS = {
+  github: "GitHub ↗",
+  paper: "Paper ↗",
+  report: "Report ↗",
+  demo: "Live Demo ↗",
+};
+
+function ProjectDetail() {
   const { id } = useParams();
-  const project = projects.find(p => p.id === parseInt(id));
-
-  // Log to confirm data
-  console.log('Rendering project:', project);
+  const project = projects.find((item) => item.id === id);
 
   if (!project) {
-    return <div className="text-center py-20">Project not found</div>;
+    return (
+      <main className="project-not-found">
+        <p>404 / PROJECT NOT FOUND</p>
+        <Link to="/">← Return to portfolio</Link>
+      </main>
+    );
   }
 
-  // Safely build images array (works even if images is missing)
-  let imagesArray = [];
-  if (Array.isArray(project.images) && project.images.length) {
-    imagesArray = project.images.slice(0, 2);
-  } else if (project.image) {
-    imagesArray = [project.image];
-  } else {
-    imagesArray = ['/fallback-placeholder.jpg']; // add a placeholder image to your public folder
-  }
+  const layout = LAYOUTS[project.category] || DEFAULT_LAYOUT;
+  const labelOverrides = LABEL_OVERRIDES[project.category] || {};
+
+  // Only render sections the project actually has content for.
+  const sections = layout.filter((field) => {
+    const value = project[field];
+    return Array.isArray(value) ? value.length > 0 : Boolean(value);
+  });
+
+  // Only show links this category permits AND that actually exist.
+  const allowedLinks = LINK_POLICY[project.category] || [
+    "github",
+    "paper",
+    "report",
+    "demo",
+  ];
+  const visibleLinks = allowedLinks.filter((key) => project.links?.[key]);
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-6">{project.name}</h1>
+    <main className="project-detail">
+      <header className="project-detail-header">
+        <Link to="/" className="project-back">
+          ← Back to work
+        </Link>
 
-      {/* Images */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {imagesArray.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${project.name} screenshot ${i + 1}`}
-            className="rounded-lg shadow-md w-full object-cover"
-            onError={(e) => { e.target.src = '/placeholder.png'; }}
-          />
-        ))}
-      </div>
-
-      {/* Live Demo Link */}
-      {project.link && (
-        <div className="mt-6">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-emerald-500 text-white rounded hover:bg-emerald-400 transition"
-          >
-            Link →
-          </a>
+        <div className="project-detail-meta">
+          <span>{project.category}</span>
+          <span>{project.year}</span>
         </div>
+
+        <h1>{project.title}</h1>
+
+        <p className="project-detail-description">{project.description}</p>
+
+        {project.tags?.length > 0 && (
+          <div className="project-detail-tags">
+            {project.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <section className="project-detail-hero">
+        {project.heroImage ? (
+          <img src={project.heroImage} alt={project.title} />
+        ) : (
+          <div className="project-hero-placeholder">
+            <span>PROJECT_VISUAL</span>
+            <small>{project.category}</small>
+          </div>
+        )}
+      </section>
+
+      {sections.map((field, index) => {
+        const number = String(index + 1).padStart(2, "0");
+        const label =
+          labelOverrides[field] || SECTION_META[field].label;
+        const value = project[field];
+
+        return (
+          <section className="project-detail-section" key={field}>
+            <div className="detail-label">
+              {number} / {label}
+            </div>
+
+            <div className="detail-content">
+              {Array.isArray(value) ? (
+                <ul>
+                  {value.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{value}</p>
+              )}
+            </div>
+          </section>
+        );
+      })}
+
+      {project.technologies?.length > 0 && (
+        <section className="project-detail-section">
+          <div className="detail-label">
+            {String(sections.length + 1).padStart(2, "0")} / TECHNOLOGIES
+          </div>
+          <div className="detail-content">
+            <div className="detail-technologies">
+              {project.technologies.map((technology) => (
+                <span key={technology}>{technology}</span>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
-      {/* Description */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Description</h2>
-        <p className="text-gray-700 whitespace-pre-line p-2 visible-paragraph">
-  {project.description || "No description available."}
-</p>
-
-      </div>
-
-      {/* Features */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Features</h2>
-        {project.features && project.features.length > 0 ? (
-          <ul className="list-disc pl-5 space-y-1">
-            {project.features.map((feature, i) => (
-              <li key={i}>{feature}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-500">No features listed.</p>
+      <footer className="project-detail-footer">
+        {project.status && (
+          <div>
+            <span className="detail-label">STATUS</span>
+            <p>{project.status}</p>
+          </div>
         )}
-      </div>
 
-      {/* Tech Stack */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-2">Tech Stack</h2>
-        <div className="flex flex-wrap gap-2">
-          {(project.tech || project.techStack || []).map((tech, i) => (
-            <span key={i} className="bg-gray-200 px-3 py-1 rounded-full text-sm">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
+        {visibleLinks.length > 0 && (
+          <div className="project-links">
+            {visibleLinks.map((key) => (
+              <a
+                key={key}
+                href={project.links[key]}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {LINK_LABELS[key]}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <Link to="/" className="project-back">
+          ← All projects
+        </Link>
+      </footer>
+    </main>
   );
-};
+}
 
 export default ProjectDetail;
