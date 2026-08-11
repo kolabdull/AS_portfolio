@@ -20,7 +20,7 @@ function Layout() {
       <CursorGlow />
       <Navbar />
       <CommandPalette />
-      <main>
+      <main className="site-enter">
         <div className="route-fade" key={location.pathname}>
           <Outlet />
         </div>

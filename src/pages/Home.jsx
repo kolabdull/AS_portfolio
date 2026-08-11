@@ -26,28 +26,47 @@ function Home() {
   return (
     <section className="home">
       <div className="home-hero">
-        <p className="home-kicker">
-          <span className="terminal-prompt">$</span> whoami
-        </p>
+        <div className="home-hero-content">
+          <p className="home-kicker">
+            <span className="terminal-prompt">$</span> whoami
+          </p>
 
-        <h1>
-          Abdul-Samad
-          <br />
-          <span>Kolawole</span>
-        </h1>
+          <h1>
+            Abdul-Samad
+            <br />
+            <span>Kolawole</span>
+          </h1>
 
-        <p className="home-positioning">
-          Engineer working at the intersection of computational mechanics,
-          data, software, automation, and research.
-        </p>
+          <p className="home-positioning">
+            Software engineer with a research interest in computational mechanics.
+          </p>
 
-        <div className="home-actions">
-          <Link to="/build" className="primary-action">
-            View Work <span>↗</span>
-          </Link>
-          <Link to="/contact" className="secondary-action">
-            Get in Touch <span>↗</span>
-          </Link>
+          <div className="home-actions">
+            <Link to="/build" className="primary-action">
+              View Work <span>{"↗\uFE0E"}</span>
+            </Link>
+            <Link to="/contact" className="secondary-action">
+              Get in Touch <span>{"↗\uFE0E"}</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="home-hero-photo">
+          <div className="photo-frame">
+            <span className="photo-tag photo-tag-top">
+              <span>ID_001</span>
+              <span>KOLAWOLE, A-S</span>
+            </span>
+
+            <div className="photo-inner">
+              <img src="/portrait.jpg" alt="Abdul-Samad Kolawole" />
+            </div>
+
+            <span className="photo-tag photo-tag-bottom">
+              <span>LAGOS, NIGERIA</span>
+              <span>2026</span>
+            </span>
+          </div>
         </div>
       </div>
 

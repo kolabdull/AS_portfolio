@@ -22,7 +22,7 @@ function Navbar() {
           onClick={() => setIsOpen(false)}
           aria-label="Home"
         >
-          <span className="brand-mark">KT</span>
+          <span className="brand-mark">A-S</span>
           <span className="brand-name">KOLAWOLE.OS</span>
         </Link>
 

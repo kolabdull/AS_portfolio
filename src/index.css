@@ -8,6 +8,20 @@
   text-rendering: optimizeLegibility;
   --accent: #4f9dff;
   --accent-dim: rgba(79, 157, 255, 0.15);
+
+   --font-body: "Manrope", sans-serif;
+  --font-display: "Instrument Serif", "Manrope", serif;
+  --font-mono: "DM Mono", monospace;
+
+  --section-y: 140px;
+  --section-x: 7vw;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --section-y: 100px;
+    --section-x: 20px;
+  }
 }
 
 * {
@@ -389,13 +403,13 @@ button {
    PLACEHOLDER SECTIONS
 ========================= */
 
-.placeholder-section {
+padding: 140px 7vw-section {
   min-height: 70vh;
   padding: 120px 7vw;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.placeholder-section span {
+padding: 140px 7vw-section span {
   font-family: "DM Mono", monospace;
   font-size: 11px;
   color: rgba(242, 241, 236, 0.35);
@@ -506,16 +520,7 @@ button {
   }
 }
 
-  /* =========================
-   SHARED SECTIONS
-========================= */
 
-.experience-section,
-.research-section,
-.projects-section {
-  padding: 140px 7vw;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
 
 .section-header {
   display: grid;
@@ -1075,7 +1080,7 @@ button {
 ========================= */
 
 .life-section {
-  padding: 140px 7vw;
+  padding: var(--section-y) var(--section-x) calc(var(--section-y) + 20px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1245,7 +1250,7 @@ button {
 ========================= */
 
 .education-section {
-  padding: 140px 7vw;
+  padding: var(--section-y) var(--section-x) calc(var(--section-y) + 20px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1451,7 +1456,7 @@ button {
 ========================= */
 
 .contact-section {
-  padding: 140px 7vw 160px;
+  padding: var(--section-y) var(--section-x) calc(var(--section-y) + 20px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1552,7 +1557,7 @@ button {
 ========================= */
 
 .tech-stack-section {
-  padding: 140px 7vw;
+  padding: var(--section-y) var(--section-x) calc(var(--section-y) + 20px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1738,7 +1743,15 @@ button {
 }
 
 .home-hero {
-  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 6vw;
+  align-items: center;
+  max-width: 1300px;
+}
+
+.home-hero-content {
+  min-width: 0;
 }
 
 .home-kicker {
@@ -1760,6 +1773,82 @@ button {
 
 .home-hero h1 span {
   color: rgba(242, 241, 236, 0.38);
+}
+
+/* Photo column */
+.home-hero-photo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.photo-frame {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 14px;
+  background: #0e0e0e;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: rgba(242, 241, 236, 0.25);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.photo-tag {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgba(242, 241, 236, 0.55);
+  background: rgba(11, 11, 11, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.photo-tag-top {
+  top: 14px;
+}
+
+.photo-tag-bottom {
+  bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .home-hero-photo {
+    justify-content: flex-start;
+  }
+  .photo-frame {
+    width: min(100%, 360px);
+  }
 }
 
 .home-positioning {
@@ -2113,4 +2202,93 @@ button {
 }
 .recognition-link:hover {
   opacity: 0.75;
+}
+/* Instrument Serif on the biggest showcase headings only */
+.home-hero h1,
+.education-header h2,
+.tech-stack-header h2,
+.projects-header h2,
+.contact-inner h2,
+.life-header h2,
+.project-detail-header h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Serif needs less negative tracking than Manrope — override */
+.home-hero h1 {
+  letter-spacing: -0.01em;
+}
+
+/* The italic span in your name looks *incredible* in Instrument Serif italic —
+   opt-in below. Remove this rule if you prefer upright. */
+.home-hero h1 span {
+  font-style: italic;
+  color: rgba(242, 241, 236, 0.45);
+}
+
+/* Selection matches accent */
+::selection {
+  background: var(--accent);
+  color: #0b0b0b;
+}
+
+/* Keyboard focus rings, styled */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Scrollbar (Chrome/Edge/Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b0b;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid #0b0b0b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) #0b0b0b;
+}
+
+/* Underline offset — clears descenders instead of cutting them */
+a {
+  text-underline-offset: 3px;
+}
+.site-enter {
+  animation: siteEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes siteEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-enter {
+    animation: none;
+  }
 }
