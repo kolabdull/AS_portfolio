@@ -20,7 +20,7 @@ function Contact() {
             >
               <span className="contact-channel-label">{c.label}</span>
               <span className="contact-channel-value">{c.value}</span>
-              <span className="contact-channel-arrow">↗</span>
+              <span className="contact-channel-arrow">↗\uFE0E</span>
             </a>
           ))}
         </div>
