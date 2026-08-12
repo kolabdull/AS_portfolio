@@ -5,9 +5,23 @@ export const life = {
     label: "Movement",
     body: "An active person — I lift and I run. Chasing a target this year.",
     goalLabel: "2026 Running Goal",
-    goalCurrent: 240, // ← update this as your km add up (e.g. 180)
+    goalCurrent: 240,
     goalTarget: 400,
     goalUnit: "km",
+  },
+
+  reading: {
+    label: "Reading List",
+    body: "What I'm reading, have finished, or plan to pick up.",
+    inProgress: [
+      { title: "REPLACE ME", author: "AUTHOR" },
+    ],
+    completed: [
+      { title: "REPLACE ME", author: "AUTHOR" },
+    ],
+    queued: [
+      { title: "REPLACE ME", author: "AUTHOR" },
+    ],
   },
 
   listening: {

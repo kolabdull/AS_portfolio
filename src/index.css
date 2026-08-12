@@ -1141,16 +1141,44 @@ enceence-list {
 .life-goal-top {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
-  font-family: "DM Mono", monospace;
+  align-items: baseline;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: rgba(242, 241, 236, 0.5);
 }
-
+.life-goal-value {
+  color: #f2f1ec;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.life-goal-value strong {
+  color: var(--accent);
+  font-weight: 500;
+}
 .life-goal-track {
-  height: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 3px;
+  height: 22px;
+}
+.life-goal-seg {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 400ms ease, transform 400ms ease;
+}
+.life-goal-seg.filled {
+  background: var(--accent);
+}
+.life-goal-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(242, 241, 236, 0.35);
+  letter-spacing: 0.08em;
 }
 
 .life-goal-fill {
@@ -2441,4 +2469,114 @@ a {
 .life-section,
 .contact-section {
   padding-top: calc(var(--section-y) + 40px);
+}
+/* Guestbook */
+.guestbook-form {
+  margin-top: 24px;
+  display: flex;
+  gap: 8px;
+  max-width: 560px;
+}
+
+.guestbook-input {
+  flex: 1;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f2f1ec;
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 180ms ease;
+}
+
+.guestbook-input:focus {
+  border-color: var(--accent);
+}
+
+.guestbook-input::placeholder {
+  color: rgba(242, 241, 236, 0.35);
+}
+
+.guestbook-submit {
+  padding: 12px 18px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.guestbook-submit:hover:not(:disabled) {
+  background: var(--accent);
+  color: #0b0b0b;
+}
+
+.guestbook-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.guestbook-status {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.guestbook-status--ok { color: var(--accent); }
+.guestbook-status--err { color: #ff7373; }
+
+@media (max-width: 700px) {
+  .guestbook-form { flex-direction: column; }
+}
+.reading-list {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.reading-section-label {
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(242, 241, 236, 0.4);
+}
+
+.reading-section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(242, 241, 236, 0.75);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.reading-section ul li {
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.reading-section ul li:first-child {
+  border-top: 0;
+}
+
+.reading-section em {
+  font-style: italic;
+  color: #f2f1ec;
+}
+
+@media (max-width: 900px) {
+  .reading-list {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }

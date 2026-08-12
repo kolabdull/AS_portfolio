@@ -1,5 +1,7 @@
 import { life } from "../data/life";
 import SocialIcon from "./SocialIcon";
+import Guestbook from "./Guestbook";
+import ReadingList from "./ReadingList";
 
 function Life() {
   const { intro, movement, listening, writing, social } = life;
@@ -26,19 +28,33 @@ function Life() {
           <div className="life-goal">
             <div className="life-goal-top">
               <span>{movement.goalLabel}</span>
-              <span>
-                {movement.goalCurrent} / {movement.goalTarget}{" "}
-                {movement.goalUnit}
+              <span className="life-goal-value">
+                <strong>{movement.goalCurrent}</strong> / {movement.goalTarget} {movement.goalUnit}
               </span>
             </div>
+
             <div className="life-goal-track">
-              <div
-                className="life-goal-fill"
-                style={{ width: `${progress}%` }}
-              />
+              {Array.from({ length: 20 }).map((_, i) => {
+                const segmentFilled = (i + 1) <= Math.round(progress / 5);
+                return (
+                  <div
+                    key={i}
+                    className={`life-goal-seg ${segmentFilled ? "filled" : ""}`}
+                  />
+                );
+              })}
+            </div>
+
+            <div className="life-goal-meta">
+              <span>0 KM</span>
+              <span>{progress}% COMPLETE</span>
+              <span>{movement.goalTarget} KM</span>
             </div>
           </div>
         </article>
+
+        {/* Reading */}
+        <ReadingList />
 
         {/* Listening */}
         <article className="life-card">
@@ -59,11 +75,14 @@ function Life() {
                 target="_blank"
                 rel="noreferrer"
               >
-                {link.name} ↗
+                {link.name} {"↗\uFE0E"}
               </a>
             ))}
           </div>
         </article>
+
+        {/* Guestbook */}
+        <Guestbook />
 
         {/* Around the web */}
         <article className="life-card life-card--wide">
@@ -77,6 +96,9 @@ function Life() {
                 rel="noreferrer"
                 className="life-social-item"
               >
+                <span className="life-social-icon">
+                  <SocialIcon name={item.name} />
+                </span>
                 <span className="life-social-name">{item.name}</span>
                 <span className="life-social-handle">{item.handle}</span>
               </a>
