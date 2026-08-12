@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ExperienceCard = ({ experience }) => {
   return (
     <div className="experience-item">
@@ -25,6 +27,15 @@ const ExperienceCard = ({ experience }) => {
             <span key={tech}>{tech}</span>
           ))}
         </div>
+
+        {experience.projectId && (
+          <Link
+            to={`/project/${experience.projectId}`}
+            className="experience-case-study"
+          >
+            View Case Study {"↗\uFE0E"}
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -2416,3 +2416,19 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+.experience-case-study {
+  display: inline-block;
+  margin-top: 24px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: opacity 180ms ease;
+}
+.experience-case-study:hover {
+  opacity: 0.75;
+}

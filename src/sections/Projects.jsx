@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 
 function Projects() {
+  const featuredProjects = projects.filter(
+    (project) => project.category !== "Research"
+  );
+
   return (
     <section id="projects" className="projects-section">
       <div className="section-header">
@@ -14,7 +18,7 @@ function Projects() {
       </div>
 
       <div className="projects-list">
-        {projects.map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <Link
             to={`/project/${project.id}`}
             className="project-item reveal"

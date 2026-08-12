@@ -3,10 +3,7 @@ import TechStack from "../components/TechStack";
 
 function ResearchPage() {
   return (
-    <>
       <Research />
-      <TechStack />
-    </>
   );
 }
 
