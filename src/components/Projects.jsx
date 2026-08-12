@@ -58,7 +58,7 @@ function Projects() {
 
             <div className="project-view">
                 <span className="project-view-label">View Case Study</span>
-                <span className="project-arrow">↗</span>
+                <span className="project-arrow">{"↗\uFE0E"}</span>
             </div>
           </Link>
         ))}
