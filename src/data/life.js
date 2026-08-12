@@ -14,13 +14,13 @@ export const life = {
     label: "Reading List",
     body: "What I'm reading, have finished, or plan to pick up.",
     inProgress: [
-      { title: "REPLACE ME", author: "AUTHOR" },
+      { title: "Born on a Tuesday", author: "Elnathan John" },
     ],
     completed: [
-      { title: "REPLACE ME", author: "AUTHOR" },
+      { title: "Steal Like an Artist", author: "Austin Kleon" },
     ],
     queued: [
-      { title: "REPLACE ME", author: "AUTHOR" },
+      { title: "Salt: A World History", author: "Mark Kurlansky" },
     ],
   },
 
