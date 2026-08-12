@@ -1,7 +1,7 @@
 export const experiences = [
   {
     role: "AI & Automation Analyst",
-    company: "Sankore Investments",
+    company: "Sankore Global Investments",
     period: "2026 – Present",
     type: "Professional",
     description:
@@ -43,7 +43,7 @@ export const experiences = [
   },
 
   {
-    role: "Software Development Intern",
+    role: "Software Development - Backend",
     company: "Softcom",
     period: "2023",
     type: "Software",
