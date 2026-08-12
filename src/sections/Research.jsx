@@ -59,7 +59,7 @@ function Research() {
 
             <p>{area.description}</p>
 
-            <div className="research-card-arrow">↗</div>
+            <div className="research-card-arrow">{"↗\uFE0E"}</div>
           </article>
         ))}
       </div>

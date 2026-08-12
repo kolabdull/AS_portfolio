@@ -41,7 +41,7 @@ function Projects() {
               </div>
             </div>
 
-            <div className="project-arrow">↗</div>
+            <div className="project-arrow">{"↗\uFE0E"}</div>
           </Link>
         ))}
       </div>
