@@ -2303,7 +2303,7 @@ a {
   background: #0b0b0b;
   display: grid;
   place-items: center;
-  animation: bootFade 500ms ease 1.4s both;
+  animation: bootFade 500ms ease 3.3s both;
 }
 
 @keyframes bootFade {
@@ -2398,4 +2398,21 @@ a {
   color: rgba(242, 241, 236, 0.4);
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
+}
+/* Safety: after 1.2s, anything still hidden reveals itself */
+@keyframes revealFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: revealFallback 600ms ease 1200ms forwards;
+}
+
+.reveal.is-visible {
+  animation: none;
+  opacity: 1;
+  transform: translateY(0);
 }

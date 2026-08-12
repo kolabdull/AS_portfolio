@@ -31,7 +31,7 @@ function BootSequence() {
     const revealLines = async () => {
       for (let i = 0; i < bootLines.length; i++) {
         if (cancelled) return;
-        await new Promise((r) => setTimeout(r, 320));
+        await new Promise((r) => setTimeout(r, 600));
         setLines((prev) => [...prev, bootLines[i]]);
       }
     };
@@ -39,7 +39,7 @@ function BootSequence() {
 
     // Progress bar fills over ~1.6s
     const start = Date.now();
-    const duration = 1600;
+    const duration = 3200;
     const tick = setInterval(() => {
       const elapsed = Date.now() - start;
       const pct = Math.min(100, (elapsed / duration) * 100);
@@ -51,7 +51,7 @@ function BootSequence() {
     const fadeTimer = setTimeout(() => {
       sessionStorage.setItem("booted", "1");
       setVisible(false);
-    }, 1900);
+    }, 3800);
 
     return () => {
       cancelled = true;
