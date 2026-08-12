@@ -1,7 +1,7 @@
 export const experiences = [
   {
     role: "AI & Automation Analyst",
-    company: "Sankore Investments",
+    company: "Sankore Global Investments",
     period: "2026 – Present",
     type: "Professional",
     projectId: "intelligent-client-onboarding-automation", // must match your project's id in projects.js
