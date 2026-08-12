@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import CommandPalette from "./CommandPalette";
 import CursorGlow from "./CursorGlow";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import BootSequence from "./BootSequence";
 
 function Layout() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function Layout() {
 
   return (
     <div className="portfolio-app">
+      <BootSequence />
       <CursorGlow />
       <Navbar />
       <CommandPalette />

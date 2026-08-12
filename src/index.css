@@ -2292,3 +2292,110 @@ a {
     animation: none;
   }
 }
+/* =========================
+   BOOT SEQUENCE
+========================= */
+
+.boot-sequence {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #0b0b0b;
+  display: grid;
+  place-items: center;
+  animation: bootFade 500ms ease 1.4s both;
+}
+
+@keyframes bootFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.boot-inner {
+  width: min(520px, 92vw);
+  font-family: var(--font-mono);
+  color: rgba(242, 241, 236, 0.8);
+}
+
+.boot-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.boot-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+}
+
+.boot-name {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.boot-log {
+  min-height: 140px;
+  margin-bottom: 32px;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.boot-line {
+  animation: bootLineIn 220ms ease both;
+}
+
+@keyframes bootLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boot-prompt {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.boot-cursor {
+  display: inline-block;
+  animation: blink 1s steps(2, end) infinite;
+}
+
+.boot-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+}
+
+.boot-progress-track {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 30ms linear;
+}
+
+.boot-progress-value {
+  color: rgba(242, 241, 236, 0.4);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
