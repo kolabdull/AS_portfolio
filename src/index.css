@@ -556,7 +556,7 @@ padding: 140px 7vw-section span {
    EXPERIENCE
 ========================= */
 
-.experience-list {
+enceence-list {
   max-width: 1100px;
   margin-left: auto;
 }
@@ -2431,4 +2431,14 @@ a {
 }
 .experience-case-study:hover {
   opacity: 0.75;
+}
+/* Add top breathing room on all routed sections so headings clear the fixed navbar */
+.experience-section,
+.education-section,
+.tech-stack-section,
+.research-section,
+.projects-section,
+.life-section,
+.contact-section {
+  padding-top: calc(var(--section-y) + 40px);
 }
