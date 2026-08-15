@@ -1,14 +1,18 @@
 import { life } from "../data/life";
 
+const statusMeta = {
+  inProgress: { label: "In Progress", tag: "READING" },
+  completed: { label: "Recently Finished", tag: "DONE" },
+  queued: { label: "Queued", tag: "NEXT" },
+};
+
 function ReadingList() {
   const { reading } = life;
   if (!reading) return null;
 
-  const sections = [
-    { key: "inProgress", label: "In Progress" },
-    { key: "completed", label: "Recently Finished" },
-    { key: "queued", label: "Queued" },
-  ].filter((s) => reading[s.key]?.length > 0);
+  const sections = ["inProgress", "completed", "queued"]
+    .filter((key) => reading[key]?.length > 0)
+    .map((key) => ({ key, ...statusMeta[key], books: reading[key] }));
 
   if (sections.length === 0) return null;
 
@@ -17,14 +21,27 @@ function ReadingList() {
       <span className="life-label">{reading.label}</span>
       <p className="life-body">{reading.body}</p>
 
-      <div className="reading-list">
+      <div className="reading-manifest">
         {sections.map((s) => (
-          <div key={s.key} className="reading-section">
-            <span className="reading-section-label">{s.label}</span>
-            <ul>
-              {reading[s.key].map((book, i) => (
+          <div key={s.key} className="reading-block">
+            <div className="reading-block-head">
+              <span className={`reading-tag reading-tag--${s.key}`}>
+                {s.tag}
+              </span>
+              <span className="reading-block-label">{s.label}</span>
+              <span className="reading-block-count">
+                {String(s.books.length).padStart(2, "0")}
+              </span>
+            </div>
+
+            <ul className="reading-books">
+              {s.books.map((book, i) => (
                 <li key={i}>
-                  <em>{book.title}</em> — {book.author}
+                  <span className="reading-book-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="reading-book-title">{book.title}</span>
+                  <span className="reading-book-author">{book.author}</span>
                 </li>
               ))}
             </ul>

@@ -20,7 +20,7 @@ function Life() {
       </div>
 
       <div className="life-grid">
-        {/* Movement */}
+        {/* Movement — wide, top */}
         <article className="life-card life-card--wide">
           <span className="life-label">{movement.label}</span>
           <p className="life-body">{movement.body}</p>
@@ -53,17 +53,13 @@ function Life() {
           </div>
         </article>
 
-        {/* Reading */}
-        <ReadingList />
-
-        {/* Listening */}
+        {/* Listening + Writing side by side */}
         <article className="life-card">
           <span className="life-label">{listening.label}</span>
           <p className="life-body">{listening.body}</p>
           <span className="life-genre">{listening.genre}</span>
         </article>
 
-        {/* Writing */}
         <article className="life-card">
           <span className="life-label">{writing.label}</span>
           <p className="life-body">{writing.body}</p>
@@ -81,7 +77,10 @@ function Life() {
           </div>
         </article>
 
-        {/* Guestbook */}
+        {/* Reading list — full width, restyled */}
+        <ReadingList />
+
+        {/* Guestbook — pulled up, wide */}
         <Guestbook />
 
         {/* Around the web */}

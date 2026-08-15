@@ -2534,14 +2534,14 @@ a {
 @media (max-width: 700px) {
   .guestbook-form { flex-direction: column; }
 }
-.reading-list {
+/* .reading-list {
   margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-}
+} */
 
-.reading-section-label {
+/* .reading-section-label {
   display: block;
   margin-bottom: 12px;
   font-family: var(--font-mono);
@@ -2558,9 +2558,9 @@ a {
   color: rgba(242, 241, 236, 0.75);
   font-size: 14px;
   line-height: 1.7;
-}
+} */
 
-.reading-section ul li {
+/* .reading-section ul li {
   padding: 8px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -2572,11 +2572,114 @@ a {
 .reading-section em {
   font-style: italic;
   color: #f2f1ec;
-}
+} */
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .reading-list {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+} */
+ /* Reading manifest — terminal library style */
+.reading-manifest {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.reading-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.reading-block-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reading-tag {
+  padding: 3px 7px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(242, 241, 236, 0.7);
+}
+
+.reading-tag--inProgress {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.reading-tag--completed {
+  color: rgba(242, 241, 236, 0.4);
+  border-color: rgba(242, 241, 236, 0.2);
+}
+
+.reading-block-label {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(242, 241, 236, 0.55);
+}
+
+.reading-block-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(242, 241, 236, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.reading-books {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reading-books li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 4px 12px;
+  align-items: baseline;
+}
+
+.reading-book-num {
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(242, 241, 236, 0.3);
+  padding-top: 4px;
+}
+
+.reading-book-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.25;
+  color: #f2f1ec;
+  letter-spacing: -0.01em;
+}
+
+.reading-book-author {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(242, 241, 236, 0.45);
+}
+
+@media (max-width: 900px) {
+  .reading-manifest {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
